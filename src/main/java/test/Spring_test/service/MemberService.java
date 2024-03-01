@@ -2,14 +2,17 @@ package test.Spring_test.service;
 
 import test.Spring_test.domain.Member;
 import test.Spring_test.repository.MemberRepository;
-import test.Spring_test.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * Join Membership
