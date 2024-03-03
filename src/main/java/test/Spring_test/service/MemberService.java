@@ -1,12 +1,15 @@
 package test.Spring_test.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import test.Spring_test.domain.Member;
 import test.Spring_test.repository.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -19,6 +22,7 @@ public class MemberService {
     /**
      * Join Membership
      */
+
     public Long join(Member member){
         validateDuplicateMember(member);
         memberRepository.save(member);
