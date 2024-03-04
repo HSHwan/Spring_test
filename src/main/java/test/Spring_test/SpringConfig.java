@@ -18,6 +18,21 @@ public class SpringConfig {
     public SpringConfig(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
+    @Bean
+    public MemberService memberService(){
+        return new MemberService(memberRepository);
+    }
+
+    /**
+     * AOP - Bean 등록
+     */
+
+//    @Bean
+//    public TimeTraceAop TimeTraceAop(){
+//        return new TimeTraceAop();
+//    }
+
     /**
      * JPA Type
      */
@@ -38,14 +53,9 @@ public class SpringConfig {
 //        this.dataSource = dataSource;
 //    }
 
-    @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository);
-    }
     /**
      * Memory, JDBC, JDBCTemplate, JPA Repository generate
      */
-
 //    @Bean
 //    public MemberRepository memberRepository(){
 //        return new MemoryMemberRepository();
