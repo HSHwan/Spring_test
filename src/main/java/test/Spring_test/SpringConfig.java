@@ -1,22 +1,36 @@
 package test.Spring_test;
 
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import test.Spring_test.repository.JpaMemberRepository;
 import test.Spring_test.repository.MemberRepository;
 import test.Spring_test.service.MemberService;
 
 @Configuration
 public class SpringConfig {
 
-    private EntityManager em;
+    /**
+     * Spring Data JPA Type, Repository generate
+     */
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
+    /**
+     * JPA Type
+     */
+//    private EntityManager em;
+//
+//    @Autowired
+//    public SpringConfig(EntityManager em) {
+//        this.em = em;
+//    }
+
+    /**
+     * JDBC & JDBCTemplate Type
+     */
 //    private DataSource dataSource;
 //
 //    @Autowired
@@ -26,14 +40,18 @@ public class SpringConfig {
 
     @Bean
     public MemberService memberService(){
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
+    /**
+     * Memory, JDBC, JDBCTemplate, JPA Repository generate
+     */
 
-    @Bean
-    public MemberRepository memberRepository(){
+//    @Bean
+//    public MemberRepository memberRepository(){
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
 //        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
-    }
+//        return new JpaMemberRepository(em);
+//
+//    }
 }
